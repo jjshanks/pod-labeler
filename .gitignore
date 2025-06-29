@@ -1,0 +1,79 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Go workspace file
+go.work
+
+# Dependency directories
+vendor/
+
+# Go build cache
+bin/
+dist/
+
+# IDE specific files
+.idea/
+*.swp
+*.swo
+*~
+.vscode/
+*.iml
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Kubernetes generated files
+kubeconfig
+*.kubeconfig
+.kube/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build artifacts
+build/
+_output/
+
+# Debug files
+debug
+__debug_bin
+
+# Test coverage
+coverage.txt
+coverage.html
+*.coverprofile
+
+# Helm charts dependencies
+charts/*/charts/
+charts/*/Chart.lock
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Claude AI
+.claude/
