@@ -77,3 +77,6 @@ charts/*/Chart.lock
 
 # Claude AI
 .claude/
+
+# Serena MCP
+.serena/

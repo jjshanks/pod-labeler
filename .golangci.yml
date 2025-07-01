@@ -1,0 +1,150 @@
+# This file contains configuration options for golangci-lint
+# Run `golangci-lint run` to execute linting
+
+run:
+  # Timeout for analysis
+  timeout: 5m
+  
+  # Include test files
+  tests: true
+  
+  # Skip generated files
+  skip-files:
+    - ".*\.pb\.go$"
+    - ".*\.generated\.go$"
+    - "zz_generated\..*.go$"
+  
+  # Skip directories
+  skip-dirs:
+    - vendor
+    - third_party
+    - testdata
+
+linters:
+  enable:
+    # Default linters
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - typecheck
+    - unused
+    
+    # Additional linters
+    - gofmt
+    - goimports
+    - revive
+    - misspell
+    - unconvert
+    - dupl
+    - goconst
+    - gocyclo
+    - gocognit
+    - asciicheck
+    - bodyclose
+    - exportloopref
+    - gosec
+    - prealloc
+    - predeclared
+    - stylecheck
+    - whitespace
+    - gocritic
+    - goprintffuncname
+    - nakedret
+    - nolintlint
+    - rowserrcheck
+    - errorlint
+    - godot
+    - noctx
+  
+  disable:
+    - exhaustive
+    - exhaustivestruct
+    - gochecknoglobals
+    - gochecknoinits
+    - godox
+    - golint # deprecated
+    - interfacer # deprecated
+    - maligned # deprecated
+    - scopelint # deprecated
+    - wsl
+    - nlreturn
+    - gomnd
+    - funlen
+    - lll
+
+linters-settings:
+  gofmt:
+    simplify: true
+  
+  goimports:
+    local-prefixes: github.com/jjshanks/pod-labeler
+  
+  govet:
+    check-shadowing: true
+  
+  revive:
+    confidence: 0.8
+  
+  dupl:
+    threshold: 100
+  
+  goconst:
+    min-len: 2
+    min-occurrences: 3
+  
+  gocyclo:
+    min-complexity: 15
+  
+  gocognit:
+    min-complexity: 20
+  
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - experimental
+      - opinionated
+      - performance
+      - style
+    disabled-checks:
+      - dupImport # https://github.com/go-critic/go-critic/issues/845
+      - ifElseChain
+      - octalLiteral
+      - whyNoLint
+      - wrapperFunc
+  
+  gosec:
+    excludes:
+      - G404 # Insecure random number source (we don't need crypto-strong randomness everywhere)
+  
+  nakedret:
+    max-func-lines: 30
+  
+  errorlint:
+    errorf: true
+
+issues:
+  # Maximum issues count per one linter
+  max-issues-per-linter: 0
+  
+  # Maximum count of issues with the same text
+  max-same-issues: 0
+  
+  # Exclude some linters from running on tests files
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - gocyclo
+        - errcheck
+        - dupl
+        - gosec
+        - goconst
+    
+    # Exclude known patterns
+    - linters:
+        - stylecheck
+      text: "ST1000:"
+  
+  # Independently from option `exclude` we use default exclude patterns
+  exclude-use-default: false
