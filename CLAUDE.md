@@ -88,7 +88,7 @@ The codebase follows a hybrid approach with two implementations:
 - Planning documents are in `docs/planning/`
 - Current milestone: `docs/planning/MILESTONE_1_Core_Development.md`
 - Update milestone docs as tasks are completed
-- Each subtask is it's own commit
+- Each subtask is its own commit
 - Mark subtasks with commit SHAs after implementation
 
 ## Testing Strategy
