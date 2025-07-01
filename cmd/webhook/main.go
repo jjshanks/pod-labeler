@@ -61,7 +61,10 @@ func parseFlagsWithArgs(args []string) *config {
 	fs.StringVar(&cfg.keyFile, "tls-key-file", "/etc/webhook/certs/tls.key", "Path to TLS key file")
 	fs.IntVar(&cfg.metricsPort, "metrics-port", 8080, "Metrics server port")
 
-	fs.Parse(args)
+	if err := fs.Parse(args); err != nil {
+		fmt.Fprintf(os.Stderr, "Error parsing flags: %v\n", err)
+		os.Exit(1)
+	}
 
 	return cfg
 }
