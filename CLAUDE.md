@@ -9,6 +9,7 @@ This is a Kubernetes mutating admission controller that automatically adds label
 ## Key Commands
 
 ### Building and Running
+
 ```bash
 # Build the webhook binary
 make build
@@ -36,6 +37,7 @@ make clean
 ```
 
 ### Development Workflow
+
 ```bash
 # Run a single test
 go test -v -run TestPodLabelMutation ./pkg/mutation/
@@ -55,6 +57,7 @@ make fmt lint test
 The codebase follows a hybrid approach with two implementations:
 
 1. **Traditional Webhook** (Primary)
+
    - Entry point: `cmd/webhook/main.go`
    - Core server: `pkg/webhook/server.go` - HTTPS server with TLS 1.2+
    - Admission handler: `pkg/webhook/handler.go` - Processes admission requests
@@ -66,11 +69,13 @@ The codebase follows a hybrid approach with two implementations:
    - Uses CEL expressions for simple labeling rules
 
 ### Key Design Patterns
+
 - **Chain of Responsibility**: Label rules are applied sequentially via `LabelRule` interface
 - **Builder Pattern**: JSON patches are constructed via `patch.Builder`
 - **Interface-based Design**: Core components (`Generator`, `Handler`, `CertificateManager`) are interfaces for testability
 
 ### Label Generation Logic
+
 - System namespaces (kube-system, kube-public, kube-node-lease) are skipped
 - Environment labels based on namespace prefix:
   - `prod-*` → `environment=production`
@@ -83,11 +88,13 @@ The codebase follows a hybrid approach with two implementations:
 - Planning documents are in `docs/planning/`
 - Current milestone: `docs/planning/MILESTONE_1_Core_Development.md`
 - Update milestone docs as tasks are completed
+- Each subtask is it's own commit
 - Mark subtasks with commit SHAs after implementation
 
 ## Testing Strategy
 
 The project uses multiple testing approaches:
+
 - **Unit Tests**: Standard Go tests with testify assertions
 - **Integration Tests**: Using controller-runtime's EnvTest
 - **E2E Tests**: Kind cluster testing (see `test/e2e/`)
